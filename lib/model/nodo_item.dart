@@ -4,26 +4,26 @@ import 'package:flutter/material.dart';
 class NoDOItem extends StatelessWidget {
 
   String _itemName;
-  String _dataCreated;
+  String _dateCreated;
   int _id;
 
-  NoDOItem(this._itemName, this._dataCreated);
+  NoDOItem(this._itemName, this._dateCreated);
 
   NoDOItem.map(dynamic obj){
     this._itemName = obj["itemName"];
-    this._dataCreated = obj["dateCreated"];
+    this._dateCreated = obj["dateCreated"];
     this._id = obj["id"];
   }
 
   String get itemName => _itemName;
-  String get dataCreated => _dataCreated;
+  String get dateCreated => _dateCreated;
   int get id => _id;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
 
     map["itemName"] = _itemName;
-    map["dataCreated"] = _dataCreated;
+    map["dateCreated"] = _dateCreated;
     if(_id != null){
       map["id"] = _id;
     }
@@ -33,7 +33,7 @@ class NoDOItem extends StatelessWidget {
 
   NoDOItem.fromMap(Map<String, dynamic> map) {
     this._itemName = map["itemName"];
-    this._dataCreated = map["dataCreated"];
+    this._dateCreated = map["dateCreated"];
     this._id = map["id"];
   }
 
@@ -52,7 +52,7 @@ class NoDOItem extends StatelessWidget {
           ),),
           new Container(
             margin: const EdgeInsets.only(top: 5.0),
-            child: Text("Created on:$_dataCreated",
+            child: Text("Created on:$_dateCreated",
             style: TextStyle(
               color: Colors.white70,
               fontSize: 13.5,
