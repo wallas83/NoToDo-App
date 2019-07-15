@@ -55,19 +55,19 @@ class DatabaseHelper {
   //get
 
   Future<List> getItems() async {
-    var dbClient = await _db;
+    var dbClient = await db;
     var result = await dbClient.rawQuery("SELECT * FROM $tableName ORDER BY $columnItemName ASC");
 
     return result.toList();
   }
 
   Future<int> getCount() async {
-    var dbClient = await _db;
+    var dbClient = await db;
     return Sqflite.firstIntValue(
         await dbClient.rawQuery("SELECT COUNT(*) FROM $tableName "));
   }
   Future<NoDOItem> getItem(int id) async {
-    var dbClient = await _db;
+    var dbClient = await db;
     var result = await dbClient.rawQuery("SELECT * FROM $tableName WHERE $columnId = $id ");
 
     if( result.length == 0) return null;
@@ -75,18 +75,18 @@ class DatabaseHelper {
     return new NoDOItem.fromMap(result.first);
   }
 
-  Future<int> deleteUser(int id) async {
-    var dbClient = await _db;
+  Future<int> deleteItem(int id) async {
+    var dbClient = await db;
     return await dbClient.delete(tableName, where:"$columnId = ?", whereArgs: [id]);
   }
 
-  Future<int> updateUser( NoDOItem item) async {
-    var dbClient = await _db;
+  Future<int> updateItem( NoDOItem item) async {
+    var dbClient = await db;
     return await dbClient.update(tableName, item.toMap(), where: "$columnId =?", whereArgs: [item.id]);
   }
 
   Future close() async {
-    var dbClient = await _db;
+    var dbClient = await db;
     return dbClient.close();
   }
 }
